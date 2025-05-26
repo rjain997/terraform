@@ -48,10 +48,15 @@ jobs:
             #terraform plan
             #terraform apply --auto-approve
             touch terraform.tfstate
+  git-status:
+    runs-on: mine
+    needs: terraform-job
+
+    steps:
 
       - name : Git Status
         run: git status
-              
+
 
       - name: Commit and Push Terraform State
         run: |
