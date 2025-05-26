@@ -54,13 +54,13 @@ jobs:
         run: git status
       
       - name: Commit and Push Terraform State
-        uses: commit.yml
+        uses: .github/workflows/commit.yml
 
       - name: delete file
         run: rm terraform.tfstate
-        
+
       - name: Commit and Push Terraform State
-        uses: commit.yml
+        uses: .github/workflows/commit.yml
 
 
 
