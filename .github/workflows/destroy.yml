@@ -1,8 +1,8 @@
-name: Terraform Destroy
+name: Terraform
 
 on:
   workflow_dispatch:
-
+  
 jobs:
   terraform-job:
     runs-on: mine
@@ -32,18 +32,11 @@ jobs:
 
       - name: Clone repo
         uses: actions/checkout@v4
-
-      - name: download artifacts
-        uses: actions/download-artifact@v4
-        with:
-         name: terraform-file
-         #path: terraform.tfstate
         
       - name: Run terraform commands
-        run: terraform destroy --auto-approve
-            
-
-      
+        run: | 
+            terraform init
+            terraform destroy --auto-approve
 
 
 
