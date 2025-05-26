@@ -61,7 +61,14 @@ jobs:
           git commit -m "Update Terraform Stateee"
           git push
       - name: delete file
-        run: rm terraform.tfstate  
+        run: rm terraform.tfstate
+      - name: Commit and Push Terraform State
+        run: |
+          git config --global user.name "rjain997"
+          git config --global user.email "rithikjain24@hotmail.com"
+          git add terraform.tfstate
+          git commit -m "Update Terraform Stateee"
+          git push
 
 
 
