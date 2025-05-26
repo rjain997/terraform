@@ -36,6 +36,9 @@ jobs:
       - name: AZ account show
         run: az account show
 
+      - name: Check working directory
+        run: pwd  && ls
+
       - name: Clone repo
         run: git clone git@github.com:rjain997/terraform.git
         
