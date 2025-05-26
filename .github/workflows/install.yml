@@ -27,6 +27,8 @@ jobs:
 
       # - name: Check version
       #   run: terraform --version
+      - name: Cleanup workspace
+        run: rm -rf $GITHUB_WORKSPACE/*   
 
       - name: AZ Login
         run: az login --service-principal --username ${{ vars.AZ_APPID }} --password ${{ secrets.AZ_PASSWORD }} --tenant ${{ secrets.AZ_TENANT }}
@@ -43,14 +45,9 @@ jobs:
             #terraform plan
             #terraform apply --auto-approve
             touch terraform.tfstate
+
       - name : Git Status
         run: git status      
-
-      # - name: upload artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: terraform-file
-      #     path: terraform.tfstate
 
       - name: Commit and Push Terraform State
         run: |
@@ -58,7 +55,9 @@ jobs:
           git config --global user.email "rithikjain24@hotmail.com"
           git add terraform/terraform.tfstate
           git commit -m "Update Terraform State"
-          git push   
+          git push
+
+         
 
 
 
