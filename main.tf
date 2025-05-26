@@ -9,7 +9,7 @@ terraform {
 
 provider "azurerm" {
   features {}  # This is required by the azurerm provider
-  subscription_id = c709ea7b-58cc-4a06-a97e-7f87976e33b8
+  subscription_id = "c709ea7b-58cc-4a06-a97e-7f87976e33b8"
 }
 
 
