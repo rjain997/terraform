@@ -5,7 +5,7 @@ on:
 
 jobs:
   terraform-job:
-    runs-on: my-runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Install Terraform
