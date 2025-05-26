@@ -27,9 +27,6 @@ jobs:
 
       # - name: Check version
       #   run: terraform --version
-      - name: Cleanup previous runs
-        run: rm -rf /tmp/workspace && mkdir /tmp/workspace  
-
       - name: AZ Login
         run: az login --service-principal --username ${{ vars.AZ_APPID }} --password ${{ secrets.AZ_PASSWORD }} --tenant ${{ secrets.AZ_TENANT }}
 
@@ -40,7 +37,7 @@ jobs:
         run: pwd  && ls
 
       - name: Clone repo
-        run: git clone git@github.com:rjain997/terraform.git
+        uses: actions/checkout@v4
         
       - name: create a dummy file
         run: | 
@@ -48,17 +45,10 @@ jobs:
             #terraform plan
             #terraform apply --auto-approve
             touch terraform.tfstate
-  git-status:
-    runs-on: mine
-    needs: terraform-job
-
-    steps:
-
+  
       - name : Git Status
         run: git status
-        
-
-
+      
       - name: Commit and Push Terraform State
         run: |
           git config --global user.name "rjain997"
