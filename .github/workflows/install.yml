@@ -50,7 +50,8 @@ jobs:
             touch terraform.tfstate
 
       - name : Git Status
-        run: git status      
+        run: git status
+              
 
       - name: Commit and Push Terraform State
         run: |
