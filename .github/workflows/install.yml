@@ -56,6 +56,7 @@ jobs:
 
       - name : Git Status
         run: git status
+        
 
 
       - name: Commit and Push Terraform State
