@@ -12,11 +12,6 @@ provider "azurerm" {
   subscription_id = c709ea7b-58cc-4a06-a97e-7f87976e33b8
 }
 
-#variable "subscription_id" {
-#  description = "The Azure subscription ID"
- # type        = string
-  #sensitive   = true
-}
 
 # Create a resource group
 resource "azurerm_resource_group" "example" {
