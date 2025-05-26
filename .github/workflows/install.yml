@@ -29,9 +29,8 @@ jobs:
 
       # - name: Check version
       #   run: terraform --version
-      - name: Remove terraform folder
-        run: rm -rf /home/automation/auto_runner/actions-runner/actions-runner/_work/terraform/
-        
+    
+
       - name: AZ Login
         run: az login --service-principal --username ${{ vars.AZ_APPID }} --password ${{ secrets.AZ_PASSWORD }} --tenant ${{ secrets.AZ_TENANT }}
 
