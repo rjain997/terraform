@@ -38,4 +38,14 @@ jobs:
         run: | 
             terraform init
             terraform plan
+            terraform apply --auto-approve
+
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-file
+          path: terraform.tfstate
+
+
+
 
