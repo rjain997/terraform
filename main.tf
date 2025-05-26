@@ -9,13 +9,13 @@ terraform {
 
 provider "azurerm" {
   features {}  # This is required by the azurerm provider
-  subscription_id = var.subscription_id
+  subscription_id = ${{ vars.subscription_id }}
 }
 
-variable "subscription_id" {
-  description = "The Azure subscription ID"
-  type        = string
-  sensitive   = true
+#variable "subscription_id" {
+#  description = "The Azure subscription ID"
+ # type        = string
+  #sensitive   = true
 }
 
 # Create a resource group
