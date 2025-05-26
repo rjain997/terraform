@@ -35,14 +35,16 @@ jobs:
         run: az account show
 
       - name: Clone repo
-        uses: actions/checkout@v4
+        uses: git clone git@github.com:rjain997/actions-1.git
         
-      - name: Run terraform commands
+      - name: create a dummy file
         run: | 
             #terraform init
             #terraform plan
             #terraform apply --auto-approve
             touch terraform.tfstate
+      - name : Git Status
+        run: git status      
 
       # - name: upload artifacts
       #   uses: actions/upload-artifact@v4
