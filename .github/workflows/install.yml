@@ -59,7 +59,7 @@ jobs:
       - name: delete file
         run: rm terraform.tfstate
 
-      - name: Commit and Push Terraform State
+      - name: Commit and Push Terraform Statee
         uses: ./.github/workflows/commit.yml
 
 
