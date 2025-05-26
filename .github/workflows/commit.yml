@@ -9,6 +9,8 @@ jobs:
     permissions:
         contents: write
     steps:
+    - name: clone repo
+        uses: actions/checkout@v4
 
     - name: delete the file
       run: |
