@@ -50,7 +50,7 @@ jobs:
             #terraform apply --auto-approve
             touch terraform.tfstate
   
-      - name : Git Status
+      - name : Git Statuss
         run: git status
       
       - name: Commit and Push Terraform State
