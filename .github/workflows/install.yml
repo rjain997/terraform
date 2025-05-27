@@ -53,14 +53,27 @@ jobs:
       - name : Git Statuss
         run: git status
       
-      - name: Commit and Push Terraform State
-        uses: rj997/terraform/.github/workflows/commit.yml@main
 
-      - name: delete file
+  commit-state-job:
+    name: Commit Terraform State
+    uses: ./.github/workflows/commit.yml@main
+    needs: terraform-job
+
+  delete-state-job:
+    name: Delete Terraform State
+    runs-on: mine
+    needs: commit-state-job
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Delete the state file
         run: rm terraform.tfstate
 
-      - name: Commit and Push Terraform Statee
-        uses: rj997/terraform/.github/workflows/commit.yml@main
+  commit-deleted-state:
+    name: Commit Deleted Terraform State
+    uses: ./.github/workflows/commit.yml@main
+    needs: delete-state-job     
 
 
 
