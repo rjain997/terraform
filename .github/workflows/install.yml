@@ -1,4 +1,4 @@
-name: Create AKS
+name: Create AKS and blob
 
 on:
   # push:
@@ -42,7 +42,14 @@ jobs:
 
       - name: Clone repo
         uses: actions/checkout@v4
-        
+
+      - name: Create Blob
+        working-directory: ./HCL/Blob/
+        run: | 
+            terraform init
+            terraform plan
+            terraform apply --auto-approve
+
       - name: Create AKS
         working-directory: ./HCL/AKS/
         run: | 
