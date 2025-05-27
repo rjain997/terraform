@@ -55,11 +55,15 @@ jobs:
       
 
   commit-state-job:
+    permissions:
+        contents: write
     name: Commit Terraform State
     uses: ./.github/workflows/commit.yml
     needs: terraform-job
 
   delete-state-job:
+    permissions:
+        contents: write
     name: Delete Terraform State
     runs-on: mine
     needs: commit-state-job
@@ -71,6 +75,8 @@ jobs:
         run: rm terraform.tfstate
 
   commit-deleted-state:
+    permissions:
+        contents: write
     name: Commit Deleted Terraform State
     uses: ./.github/workflows/commit.yml
     needs: delete-state-job     
