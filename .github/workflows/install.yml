@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - '.github/workflows/install.yml'
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -33,9 +32,6 @@ jobs:
 
   commit-job:
     needs: terraform-job
-    runs-on: mine
-    permissions:
-      contents: write
     uses: ./.github/workflows/commit.yml
-    with:
-      filename: terraform.tfstate
+
+
