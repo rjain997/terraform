@@ -1,4 +1,5 @@
-name: User Input Terraform Deploy
+name: Terraform Deploy with User Input
+
 on:
   workflow_dispatch:
     inputs:
@@ -22,74 +23,6 @@ on:
         required: true
       container_access_type:
         description: 'Container Access Type (e.g., private)'
-        required: true
-
-jobs:
-  terraform:
-    runs-on: ubuntu-latest
-
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      TF_VAR_resource_group_name: ${{ github.event.inputs.resource_group_name }}
-      TF_VAR_location: ${{ github.event.inputs.location }}
-      TF_VAR_storage_account_name: ${{ github.event.inputs.storage_account_name }}
-      TF_VAR_storage_account_tier: ${{ github.event.inputs.storage_account_tier }}
-      TF_VAR_replication_type: ${{ github.event.inputs.replication_type }}
-      TF_VAR_container_name: ${{ github.event.inputs.container_name }}
-      TF_VAR_container_access_type: ${{ github.event.inputs.container_access_type }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.0
-
-      - name: Terraform Format Check
-        run: terraform fmt -check
-
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-
-on:
-  workflow_dispatch:
-    inputs:
-      resource_group_name:
-        description: 'Azure Resource Group Name'
-        required: true
-      location:
-        description: 'Azure Location'
-        required: true
-      storage_account_name:
-        description: 'Storage Account Name (must be globally unique)'
-        required: true
-      storage_account_tier:
-        description: 'Storage Account Tier'
-        required: true
-      replication_type:
-        description: 'Replication Type'
-        required: true
-      container_name:
-        description: 'Storage Container Name'
-        required: true
-      container_access_type:
-        description: 'Container Access Type'
         required: true
 
 jobs:
