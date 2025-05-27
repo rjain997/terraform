@@ -52,14 +52,28 @@ jobs:
   
       - name : Git Statuss
         run: git status
+
+      - name: Upload Terraform State File
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfstate
+          path: terraform.tfstate  
       
 
   commit-state-job:
-    permissions:
-        contents: write
-    name: Commit Terraform State
-    uses: ./.github/workflows/commit.yml
     needs: terraform-job
+    runs-on: mine
+    permissions:
+      contents: write
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tfstate
+
+      - name: Commit Terraform State
+        uses: ./.github/workflows/commit.yml
+
 
   # delete-state-job:
   #   permissions:
@@ -73,7 +87,7 @@ jobs:
 
   #     - name: Delete the state file
   #       run: rm terraform.tfstate
-  
+
 
   # commit-deleted-state:
   #   permissions:
