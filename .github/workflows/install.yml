@@ -1,9 +1,9 @@
 name: Terraform
 
 on:
-  push:
-    paths:
-      - '.github/workflows/install.yml'
+  # push:
+  #   paths:
+  #     - '.github/workflows/install.yml'
   workflow_dispatch:
   
 
@@ -52,15 +52,6 @@ jobs:
   
       - name : Git Statuss
         run: git status
-
-      - name: Upload Terraform State
-        uses: actions/upload-artifact@v3
-        with:
-        name: terraform-state
-        path: terraform.tfstate
-
- 
-      
 
   
 
