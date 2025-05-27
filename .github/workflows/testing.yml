@@ -6,27 +6,24 @@ on:
       resource_group_name:
         description: 'Azure Resource Group Name'
         required: true
-        default: 'blob_for_terraform'
       location:
         description: 'Azure Location'
         required: true
-        default: 'West Europe'
       storage_account_name:
         description: 'Storage Account Name (must be globally unique)'
         required: true
-        default: 'maronaamrj'
       storage_account_tier:
         description: 'Storage Account Tier'
-        default: 'Standard'
+        required: true
       replication_type:
         description: 'Replication Type'
-        default: 'LRS'
+        required: true
       container_name:
         description: 'Storage Container Name'
-        default: 'tfstate'
+        required: true
       container_access_type:
         description: 'Container Access Type'
-        default: 'private'
+        required: true
 
 jobs:
   terraform:
