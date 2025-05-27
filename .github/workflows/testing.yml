@@ -48,6 +48,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: cd to blob directory
+        run: cd blob
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -65,5 +68,5 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
