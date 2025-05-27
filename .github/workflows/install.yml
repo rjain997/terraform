@@ -4,7 +4,9 @@ on:
   # push:
   #   paths:
   #     - '.github/workflows/install.yml'
-  workflow_dispatch:
+  #workflow_dispatch:
+  pull_request:
+    types: [opened]
   
 
 jobs:
