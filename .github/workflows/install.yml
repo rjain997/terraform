@@ -56,7 +56,7 @@ jobs:
 
   commit-state-job:
     name: Commit Terraform State
-    uses: ./.github/workflows/commit.yml@main
+    uses: ./.github/workflows/commit.yml
     needs: terraform-job
 
   delete-state-job:
@@ -72,7 +72,7 @@ jobs:
 
   commit-deleted-state:
     name: Commit Deleted Terraform State
-    uses: ./.github/workflows/commit.yml@main
+    uses: ./.github/workflows/commit.yml
     needs: delete-state-job     
 
 
