@@ -1,4 +1,4 @@
-name: Terraform Destroy
+name: Destroy AKS
 
 on:
   workflow_dispatch:
@@ -36,20 +36,10 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Run terraform commands
+        working-directory: ./HCL/AKS/
         run: |
           terraform init
           terraform destroy --auto-approve
-          
-
-      # - name: Commit
-      #   run: |
-      #       rm -rf terraform.tfstate
-      #       git config --global user.name "rjain997"
-      #       git config --global user.email "rithikjain24@hotmail.com"
-      #       git add terraform.tfstate
-      #       git commit -m "Update Terraform Stateee"
-      #       git push 
-
 
 
 
