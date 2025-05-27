@@ -47,29 +47,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: cd to blob directory
-        run: cd blob
-      - name: ls blob dir
-        run:  ls -lrth
-        working-directory: ./blob
+        
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.6.0
 
-      # - name: Terraform Format Check
-      #   run: terraform fmt -check
-
-      # - name: Terraform Validate
-      #   run: terraform validate
-
       - name: Terraform Init
         run: terraform init
+        working-directory: ./blob
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: ./blob
 
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
