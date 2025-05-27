@@ -5,96 +5,37 @@ on:
     paths:
       - '.github/workflows/install.yml'
   workflow_dispatch:
-  
+
+permissions:
+  contents: write
 
 jobs:
   terraform-job:
     runs-on: mine
-    permissions:
-        contents: write
-
     steps:
-      # - name: Install Terraform
-      #   run: |
-      #     sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
-      #     wget -O- https://apt.releases.hashicorp.com/gpg | \
-      #     gpg --dearmor | \
-      #     sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-      #     gpg --no-default-keyring \
-      #     --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
-      #     --fingerprint
-      #     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-      #     sudo apt update
-      #     sudo apt-get install terraform
-
-      # - name: Check version
-      #   run: terraform --version
-    
-
-      - name: AZ Login
-        run: az login --service-principal --username ${{ vars.AZ_APPID }} --password ${{ secrets.AZ_PASSWORD }} --tenant ${{ secrets.AZ_TENANT }}
-
-      - name: AZ account show
-        run: az account show
-
       - name: Check working directory
-        run: pwd  && ls
+        run: pwd && ls
 
       - name: Clone repo
         uses: actions/checkout@v4
-        
-      - name: create a dummy file
-        run: | 
-            #terraform init
-            #terraform plan
-            #terraform apply --auto-approve
-            touch terraform.tfstate
-  
-      - name : Git Statuss
+
+      - name: Create dummy tfstate
+        run: touch terraform.tfstate
+
+      - name: Git status
         run: git status
 
       - name: Upload Terraform State File
         uses: actions/upload-artifact@v4
         with:
           name: tfstate
-          path: terraform.tfstate  
-      
+          path: terraform.tfstate
 
-  commit-state-job:
+  commit-job:
     needs: terraform-job
     runs-on: mine
     permissions:
       contents: write
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tfstate
-
-      - name: Commit Terraform State
-        uses: rj997/terraform/.github/workflows/commit.yml@main
-
-
-  # delete-state-job:
-  #   permissions:
-  #       contents: write
-  #   name: Delete Terraform State
-  #   runs-on: mine
-  #   needs: commit-state-job
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v4
-
-  #     - name: Delete the state file
-  #       run: rm terraform.tfstate
-
-
-  # commit-deleted-state:
-  #   permissions:
-  #       contents: write
-  #   name: Commit Deleted Terraform State
-  #   uses: rj997/terraform/.github/workflows/commit.yml
-  #   needs: delete-state-job     
-
-
-
+    uses: ./.github/workflows/commit.yml
+    with:
+      filename: terraform.tfstate
