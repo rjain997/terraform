@@ -72,7 +72,7 @@ jobs:
           name: tfstate
 
       - name: Commit Terraform State
-        uses: ./.github/workflows/commit.yml
+        uses: rj997/terraform/.github/workflows/commit.yml@main
 
 
   # delete-state-job:
@@ -93,7 +93,7 @@ jobs:
   #   permissions:
   #       contents: write
   #   name: Commit Deleted Terraform State
-  #   uses: ./.github/workflows/commit.yml
+  #   uses: rj997/terraform/.github/workflows/commit.yml
   #   needs: delete-state-job     
 
 
