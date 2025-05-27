@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
@@ -62,5 +62,5 @@ jobs:
         run: terraform plan
         working-directory: ./blob
 
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
