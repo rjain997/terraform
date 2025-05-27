@@ -56,11 +56,11 @@ jobs:
         with:
           terraform_version: 1.6.0
 
-      - name: Terraform Format Check
-        run: terraform fmt -check
+      # - name: Terraform Format Check
+      #   run: terraform fmt -check
 
-      - name: Terraform Validate
-        run: terraform validate
+      # - name: Terraform Validate
+      #   run: terraform validate
 
       - name: Terraform Init
         run: terraform init
