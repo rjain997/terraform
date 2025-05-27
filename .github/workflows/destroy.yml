@@ -6,6 +6,8 @@ on:
 jobs:
   terraform-job:
     runs-on: mine
+    permissions:
+        contents: write
 
     steps:
       - name: Install Terraform
