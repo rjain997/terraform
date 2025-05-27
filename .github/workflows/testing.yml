@@ -56,12 +56,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./blob
+        working-directory: .HCL/Blob/
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./blob
+        working-directory: .HCL/Blob/
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./blob
+        working-directory: .HCL/Blob/
