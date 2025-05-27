@@ -1,5 +1,4 @@
 name: User Input Terraform Deploy
-
 on:
   workflow_dispatch:
     inputs:
