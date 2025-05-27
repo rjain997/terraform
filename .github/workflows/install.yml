@@ -1,4 +1,4 @@
-name: Terraform
+name: Create AKS
 
 on:
   # push:
@@ -43,7 +43,8 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v4
         
-      - name: create a dummy file
+      - name: Create AKS
+        working-directory: ./HCL/AKS/
         run: | 
             terraform init
             terraform plan
