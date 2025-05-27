@@ -50,6 +50,8 @@ jobs:
 
       - name: cd to blob directory
         run: cd blob
+      - name: ls blob dir
+        run:  ls -lrth
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
