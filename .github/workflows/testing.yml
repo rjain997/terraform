@@ -1,4 +1,4 @@
-name: Terraform Deploy with User Input
+name: User Input Terraform Deploy
 
 on:
   workflow_dispatch:
