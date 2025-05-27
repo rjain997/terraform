@@ -5,6 +5,13 @@ terraform {
       version = ">=3.0.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name  = "blob_for_terraform"
+    storage_account_name = "maronaamrj"
+    container_name       = "tfstate"
+    key                 = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
@@ -18,6 +25,7 @@ resource "azurerm_resource_group" "example" {
   name     = "samurai"
   location = "West Europe"
 }
+
 
 resource "azurerm_kubernetes_cluster" "example" {
   name                = "example-aks1"
