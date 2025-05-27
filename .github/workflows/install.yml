@@ -61,25 +61,25 @@ jobs:
     uses: ./.github/workflows/commit.yml
     needs: terraform-job
 
-  delete-state-job:
-    permissions:
-        contents: write
-    name: Delete Terraform State
-    runs-on: mine
-    needs: commit-state-job
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+  # delete-state-job:
+  #   permissions:
+  #       contents: write
+  #   name: Delete Terraform State
+  #   runs-on: mine
+  #   needs: commit-state-job
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
 
-      - name: Delete the state file
-        run: rm terraform.tfstate
+  #     - name: Delete the state file
+  #       run: rm terraform.tfstate
 
-  commit-deleted-state:
-    permissions:
-        contents: write
-    name: Commit Deleted Terraform State
-    uses: ./.github/workflows/commit.yml
-    needs: delete-state-job     
+  # commit-deleted-state:
+  #   permissions:
+  #       contents: write
+  #   name: Commit Deleted Terraform State
+  #   uses: ./.github/workflows/commit.yml
+  #   needs: delete-state-job     
 
 
 
